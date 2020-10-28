@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div>home</div>
+    <nav-header></nav-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import NavHeader from '../components/NavHeader'
 export default {
+  name: 'home',
+  components: {
+    NavHeader
+  }
 }
 </script>
