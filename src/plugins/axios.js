@@ -7,21 +7,22 @@ import axios from 'axios'
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-let baseURL = ''
-switch (process.env.NODE_ENV) {
-  case 'development':
-    baseURL = 'http://mall-pre.springboot.cn/api'
-    break
-  case 'prod':
-    baseURL = 'http://mall-pre.springboot.cn/api'
-    break
-  default:
-    baseURL = 'http://mall-pre.springboot.cn/api'
-    break
-}
+// let baseURL = ''
+// switch (process.env.NODE_ENV) {
+//   case 'development':
+//     baseURL = 'http://mall-pre.springboot.cn/api'
+//     break
+//   case 'prod':
+//     baseURL = 'http://mall-pre.springboot.cn/api'
+//     break
+//   default:
+//     baseURL = 'http://mall-pre.springboot.cn/api'
+//     break
+// }
 const config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  baseURL: baseURL,
+  // baseURL: baseURL,
+  baseURL: '/api',
   timeout: 60 * 1000, // Timeout
   withCredentials: true // Check cross-site Access-Control
 }
