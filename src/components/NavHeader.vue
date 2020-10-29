@@ -10,9 +10,9 @@
         </div>
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{username}}</a>
-          <a href="javascript:;" v-if="!username">登录</a>
+          <a href="javascript:;" v-if="!username" @click="login">登录</a>
           <a href="javascript:;">订单</a>
-          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车 ({{cartCount}})</a>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
                 <li class="product" v-for="(item, index) in phoneList" :key="index">
                   <a v-bind:href="'/product/' + item.id" target="_blank">
                     <div class="pro-img">
-                      <img :src="item.mainImage" :alt="item.subtitle">
+                      <img v-lazy="item.mainImage" :alt="item.subtitle">
                     </div>
                     <div class="pro-name">{{item.name}}</div>
                     <div class="pro-price">{{item.price | currency}}</div>
@@ -57,8 +57,15 @@ export default {
   name: 'nav-hrader',
   data () {
     return {
-      username: 'admin',
       phoneList: []
+    }
+  },
+  computed: {
+    username () {
+      return this.$store.state.username
+    },
+    cartCount () {
+      return this.$store.state.cartCount
     }
   },
   filters: {
@@ -79,12 +86,14 @@ export default {
           pageNum: 2
         }
       }).then((res) => {
-        console.log(res.list)
         this.phoneList = res.list
       })
     },
     goToCart () {
       this.$router.push('/cart')
+    },
+    login () {
+      this.$router.push('/login')
     }
   }
 }
