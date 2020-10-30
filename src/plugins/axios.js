@@ -45,11 +45,8 @@ _axios.interceptors.response.use(
   function (response) {
     const res = response.data
     if (res.status !== 0) {
-      if (res.status === 10) {
-        window.location.href = '/login'
-      } else {
-        alert(res.msg)
-      }
+      alert(res.msg)
+      Promise.reject(res)
     }
     return res.data
   },
