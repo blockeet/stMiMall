@@ -2,6 +2,7 @@
 
 import Vue from 'vue'
 import axios from 'axios'
+import { Message } from 'element-ui'
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -45,12 +46,16 @@ _axios.interceptors.response.use(
   function (response) {
     const res = response.data
     if (res.status !== 0) {
-      this.$message.error(res.msg)
+      if (res.status === 10) {
+        window.location.href = '/login'
+      }
+      Message.error(res.msg)
       Promise.reject(res)
     }
     return res.data
   },
   function (error) {
+    alert(error)
     // Do something with response error
     return Promise.reject(error)
   }
